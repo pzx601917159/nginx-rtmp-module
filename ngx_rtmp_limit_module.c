@@ -181,7 +181,7 @@ ngx_rtmp_limit_postconfiguration(ngx_conf_t *cf)
     ngx_rtmp_handler_pt        *h;
 
     cmcf = ngx_rtmp_conf_get_module_main_conf(cf, ngx_rtmp_core_module);
-
+    // 这里注册连接事件的回调函数
     h = ngx_array_push(&cmcf->events[NGX_RTMP_CONNECT]);
     *h = ngx_rtmp_limit_connect;
 

@@ -18,8 +18,9 @@ static ngx_int_t ngx_rtmp_finalize_set_chunk_size(ngx_rtmp_session_t *s);
 
 ngx_uint_t                  ngx_rtmp_naccepted;
 
-
+// 发送带宽
 ngx_rtmp_bandwidth_t        ngx_rtmp_bw_out;
+// 接收带宽
 ngx_rtmp_bandwidth_t        ngx_rtmp_bw_in;
 
 
@@ -268,6 +269,7 @@ ngx_rtmp_recv(ngx_event_t *rev)
             }
 
             s->ping_reset = 1;
+            // 握手的时候计算带宽
             ngx_rtmp_update_bandwidth(&ngx_rtmp_bw_in, n);
             b->last += n;
             s->in_bytes += n;

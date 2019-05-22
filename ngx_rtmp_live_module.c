@@ -1024,8 +1024,10 @@ ngx_rtmp_live_av(ngx_rtmp_session_t *s, ngx_rtmp_header_t *h,
     if (acopkt) {
         ngx_rtmp_free_shared_chain(cscf, acopkt);
     }
-
+    // 这里也计算了带宽
+    // 接收带宽
     ngx_rtmp_update_bandwidth(&ctx->stream->bw_in, h->mlen);
+    // 发送带宽
     ngx_rtmp_update_bandwidth(&ctx->stream->bw_out, h->mlen * peers);
 
     ngx_rtmp_update_bandwidth(h->type == NGX_RTMP_MSG_AUDIO ?

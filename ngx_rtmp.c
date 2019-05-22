@@ -826,6 +826,8 @@ ngx_rtmp_fire_event(ngx_rtmp_session_t *s, ngx_uint_t evt,
 
     ch = &cmcf->events[evt];
     hh = ch->elts;
+    ngx_log_error(NGX_LOG_ERR, s->connection->log, 0,
+                "event type:%d handler size;%d", evt, ch->nelts);
     for(n = 0; n < ch->nelts; ++n, ++hh) {
         if (*hh && (*hh)(s, h, in) != NGX_OK) {
             return NGX_ERROR;
